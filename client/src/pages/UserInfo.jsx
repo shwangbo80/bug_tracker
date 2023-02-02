@@ -1,11 +1,11 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useParams, Link, useHistory} from "react-router-dom";
 import axios from "axios";
 
-export default function UserInfo({ user }) {
+export default function UserInfo({user}) {
   const history = useHistory();
-  const { id } = useParams();
+  const {id} = useParams();
   const [fetchedUser, setFetchedUser] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +15,7 @@ export default function UserInfo({ user }) {
 
   const fetchOneUser = async () => {
     const response = await axios.get(
-      `http://localhost:8800/api/users/?userId=${id}`
+      `http://localhost:8801/api/users/?userId=${id}`
     );
     setFetchedUser(response.data);
     setLoading(true);
@@ -26,7 +26,7 @@ export default function UserInfo({ user }) {
       "Are you sure you want to delete the user?"
     );
     if (confirmMessage) {
-      await axios.delete(`http://localhost:8800/api/users/delete/${id}`);
+      await axios.delete(`http://localhost:8801/api/users/delete/${id}`);
       history.push("/dashboard/users");
     } else {
       console.log("confirm cancelled");
@@ -99,8 +99,7 @@ export default function UserInfo({ user }) {
                           {user.role == "Admin" ? (
                             <div className="text-center mt-sm-0 mt-3 text-sm-end">
                               <Link
-                                to={`/dashboard/useredit/${fetchedUser._id}`}
-                              >
+                                to={`/dashboard/useredit/${fetchedUser._id}`}>
                                 <button type="button" className="btn btn-light">
                                   <i className="mdi mdi-account-edit me-1" />{" "}
                                   Edit Profile
@@ -109,8 +108,7 @@ export default function UserInfo({ user }) {
                               <button
                                 type="button"
                                 className="btn btn-danger ms-3"
-                                onClick={() => handleDelete()}
-                              >
+                                onClick={() => handleDelete()}>
                                 <i className="mdi mdi-delete-forever ms-1" />{" "}
                                 Delete User
                               </button>
@@ -181,7 +179,7 @@ export default function UserInfo({ user }) {
                     <div className="card-body">
                       <h4 className="header-title mb-3">Tasks</h4>
                       <div dir="ltr">
-                        <div style={{ height: 260 }} className="chartjs-chart">
+                        <div style={{height: 260}} className="chartjs-chart">
                           <canvas id="high-performing-product" />
                         </div>
                       </div>

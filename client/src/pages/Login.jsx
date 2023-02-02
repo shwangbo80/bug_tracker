@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useRef } from "react";
+import {Link} from "react-router-dom";
+import {useRef} from "react";
 import axios from "axios";
 
-export default function Login({ user, setUser }) {
+export default function Login({user, setUser}) {
   const email = useRef();
   const password = useRef();
 
@@ -11,7 +11,7 @@ export default function Login({ user, setUser }) {
     try {
       e.preventDefault();
       const response = await axios.post(
-        "http://localhost:8800/api/auth/login",
+        "http://localhost:8801/api/auth/login",
         {
           email: email.current.value,
           password: password.current.value,
@@ -70,8 +70,7 @@ export default function Login({ user, setUser }) {
                     <div className="mb-3">
                       <a
                         href="pages-recoverpw.html"
-                        className="text-muted float-end"
-                      >
+                        className="text-muted float-end">
                         <small>Forgot your password?</small>
                       </a>
                       <label htmlFor="password" className="form-label">

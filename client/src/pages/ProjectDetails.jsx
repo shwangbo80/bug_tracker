@@ -1,6 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useParams, Link, useHistory} from "react-router-dom";
 import axios from "axios";
 
 export default function ProjectDetails({
@@ -10,7 +10,7 @@ export default function ProjectDetails({
   projectLoading,
   setSelectedProject,
 }) {
-  let { id } = useParams();
+  let {id} = useParams();
   const history = useHistory();
 
   useEffect(() => {
@@ -28,9 +28,9 @@ export default function ProjectDetails({
       "Are you sure you want to delete the project?"
     );
     if (confirmMessage) {
-      await axios.delete(`http://localhost:8800/api/projects/delete/${item}`);
+      await axios.delete(`http://localhost:8801/api/projects/delete/${item}`);
       await axios.delete(
-        `http://localhost:8800/api/tasks/delete/project/${item}`
+        `http://localhost:8801/api/tasks/delete/project/${item}`
       );
       fetchProjects();
       history.push("/dashboard");
@@ -51,7 +51,7 @@ export default function ProjectDetails({
 
   const fetchOneProject = async () => {
     const response = await axios.get(
-      `http://localhost:8800/api/projects/${id}`
+      `http://localhost:8801/api/projects/${id}`
     );
     setProjectDetail(response.data);
     setLoading(true);
@@ -59,7 +59,7 @@ export default function ProjectDetails({
 
   const fetchProjectTasks = async () => {
     const response = await axios.get(
-      `http://localhost:8800/api/tasks/all/${id}`
+      `http://localhost:8801/api/tasks/all/${id}`
     );
     setProjectTasks(response.data);
     setTaskLoading(true);
@@ -124,16 +124,14 @@ export default function ProjectDetails({
                               href="#"
                               className="dropdown-toggle arrow-none card-drop"
                               data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
+                              aria-expanded="false">
                               <i className="ri-more-fill" />
                             </a>
                             <div className="dropdown-menu dropdown-menu-end">
                               {/* item*/}
                               <Link
                                 to={`/dashboard/projects/${projectDetail._id}`}
-                                className="dropdown-item"
-                              >
+                                className="dropdown-item">
                                 <i className="mdi mdi-pencil me-1" />
                                 Edit
                               </Link>
@@ -144,8 +142,7 @@ export default function ProjectDetails({
                                 onClick={() => {
                                   handleDelete(projectDetail._id);
                                   fetchProjects();
-                                }}
-                              >
+                                }}>
                                 <i className="mdi mdi-delete me-1" />
                                 Delete
                               </a>
@@ -202,8 +199,7 @@ export default function ProjectDetails({
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
                           title="Michael Zenaty"
-                          className="d-inline-block"
-                        ></a>
+                          className="d-inline-block"></a>
                       </div>
                     </div>{" "}
                     {/* end card-body*/}
@@ -243,8 +239,7 @@ export default function ProjectDetails({
                     Tasks
                     <Link
                       to={"/dashboard/createtask"}
-                      className="btn btn-success btn-sm ms-3 rounded-pill"
-                    >
+                      className="btn btn-success btn-sm ms-3 rounded-pill">
                       Add New
                     </Link>
                   </h4>
@@ -260,8 +255,7 @@ export default function ProjectDetails({
                       href="#ongoingTasks"
                       role="button"
                       aria-expanded="false"
-                      aria-controls="ongoingTasks"
-                    >
+                      aria-controls="ongoingTasks">
                       <i className="uil uil-angle-down font-18" />
                       Ongoing <span className="text-muted">(10)</span>
                     </a>
@@ -275,18 +269,15 @@ export default function ProjectDetails({
                             return (
                               <div
                                 className="row justify-content-between"
-                                key={key}
-                              >
+                                key={key}>
                                 <div className="col-sm-3 mb-sm-0">
                                   <div className="form-check">
                                     <Link
-                                      to={`/dashboard/taskdetails/${item._id}`}
-                                    >
+                                      to={`/dashboard/taskdetails/${item._id}`}>
                                       <label
                                         role="button"
                                         className="form-check-label"
-                                        htmlFor="task1"
-                                      >
+                                        htmlFor="task1">
                                         <h4 className="text-dark">
                                           {item.taskname}
                                         </h4>
@@ -316,8 +307,7 @@ export default function ProjectDetails({
                                           <span
                                             className={`${renderPriority(
                                               item.priority
-                                            )} px-3`}
-                                          >
+                                            )} px-3`}>
                                             <h6>{item.priority}</h6>
                                           </span>
                                         </li>
@@ -346,8 +336,7 @@ export default function ProjectDetails({
                       href="#pausedTasks"
                       role="button"
                       aria-expanded="false"
-                      aria-controls="pausedTasks"
-                    >
+                      aria-controls="pausedTasks">
                       <i className="uil uil-angle-down font-18" />
                       Paused <span className="text-muted">(10)</span>
                     </a>
@@ -361,18 +350,15 @@ export default function ProjectDetails({
                             return (
                               <div
                                 className="row justify-content-between"
-                                key={key}
-                              >
+                                key={key}>
                                 <div className="col-sm-3 mb-sm-0">
                                   <div className="form-check">
                                     <Link
-                                      to={`/dashboard/taskdetails/${item._id}`}
-                                    >
+                                      to={`/dashboard/taskdetails/${item._id}`}>
                                       <label
                                         role="button"
                                         className="form-check-label"
-                                        htmlFor="task1"
-                                      >
+                                        htmlFor="task1">
                                         <h4 className="text-dark">
                                           {item.taskname}
                                         </h4>
@@ -402,8 +388,7 @@ export default function ProjectDetails({
                                           <span
                                             className={`${renderPriority(
                                               item.priority
-                                            )} px-3`}
-                                          >
+                                            )} px-3`}>
                                             <h6>{item.priority}</h6>
                                           </span>
                                         </li>
@@ -432,8 +417,7 @@ export default function ProjectDetails({
                       href="#underReviewTasks"
                       role="button"
                       aria-expanded="false"
-                      aria-controls="underReviewTasks"
-                    >
+                      aria-controls="underReviewTasks">
                       <i className="uil uil-angle-down font-18" />
                       Under Review <span className="text-muted">(10)</span>
                     </a>
@@ -447,18 +431,15 @@ export default function ProjectDetails({
                             return (
                               <div
                                 className="row justify-content-between"
-                                key={key}
-                              >
+                                key={key}>
                                 <div className="col-sm-3 mb-sm-0">
                                   <div className="form-check">
                                     <Link
-                                      to={`/dashboard/taskdetails/${item._id}`}
-                                    >
+                                      to={`/dashboard/taskdetails/${item._id}`}>
                                       <label
                                         role="button"
                                         className="form-check-label"
-                                        htmlFor="task1"
-                                      >
+                                        htmlFor="task1">
                                         <h4 className="text-dark">
                                           {item.taskname}
                                         </h4>
@@ -488,8 +469,7 @@ export default function ProjectDetails({
                                           <span
                                             className={`${renderPriority(
                                               item.priority
-                                            )} px-3`}
-                                          >
+                                            )} px-3`}>
                                             <h6>{item.priority}</h6>
                                           </span>
                                         </li>
@@ -518,8 +498,7 @@ export default function ProjectDetails({
                       href="#completedTasks"
                       role="button"
                       aria-expanded="false"
-                      aria-controls="completedTasks"
-                    >
+                      aria-controls="completedTasks">
                       <i className="uil uil-angle-down font-18" />
                       Completed <span className="text-muted">(10)</span>
                     </a>
@@ -533,18 +512,15 @@ export default function ProjectDetails({
                             return (
                               <div
                                 className="row justify-content-between"
-                                key={key}
-                              >
+                                key={key}>
                                 <div className="col-sm-3 mb-sm-0">
                                   <div className="form-check">
                                     <Link
-                                      to={`/dashboard/taskdetails/${item._id}`}
-                                    >
+                                      to={`/dashboard/taskdetails/${item._id}`}>
                                       <label
                                         role="button"
                                         className="form-check-label"
-                                        htmlFor="task1"
-                                      >
+                                        htmlFor="task1">
                                         <h4 className="text-dark">
                                           {item.taskname}
                                         </h4>
@@ -574,8 +550,7 @@ export default function ProjectDetails({
                                           <span
                                             className={`${renderPriority(
                                               item.priority
-                                            )} px-3`}
-                                          >
+                                            )} px-3`}>
                                             <h6>{item.priority}</h6>
                                           </span>
                                         </li>

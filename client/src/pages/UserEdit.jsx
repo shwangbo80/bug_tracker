@@ -1,12 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useParams, Link, useHistory} from "react-router-dom";
 import axios from "axios";
 
 export default function UserEdit(fetchProjects) {
   let history = useHistory();
 
-  const { id } = useParams();
+  const {id} = useParams();
   const [fetchedUser, setFetchedUser] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -28,7 +28,7 @@ export default function UserEdit(fetchProjects) {
 
   const fetchOneUser = async () => {
     const response = await axios.get(
-      `http://localhost:8800/api/users/?userId=${id}`
+      `http://localhost:8801/api/users/?userId=${id}`
     );
     setFirstName(response.data.firstname);
     setLastName(response.data.lastname);
@@ -104,13 +104,11 @@ export default function UserEdit(fetchProjects) {
                     <form
                       className="needs-validation"
                       noValidate
-                      onSubmit={handleSubmit}
-                    >
+                      onSubmit={handleSubmit}>
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustom01"
-                        >
+                          htmlFor="validationCustom01">
                           First name
                         </label>
                         <input
@@ -127,8 +125,7 @@ export default function UserEdit(fetchProjects) {
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustom02"
-                        >
+                          htmlFor="validationCustom02">
                           Last name
                         </label>
                         <input
@@ -150,8 +147,7 @@ export default function UserEdit(fetchProjects) {
                           className="form-select"
                           id="example-select"
                           defaultValue={role}
-                          onChange={(e) => setRole(e.target.value)}
-                        >
+                          onChange={(e) => setRole(e.target.value)}>
                           <option value="Admin">Admin</option>
                           <option value="Senior Developer">
                             Senior Developer
@@ -170,8 +166,7 @@ export default function UserEdit(fetchProjects) {
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustomUsername"
-                        >
+                          htmlFor="validationCustomUsername">
                           Username
                         </label>
                         <div className="input-group">
@@ -193,8 +188,7 @@ export default function UserEdit(fetchProjects) {
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustomUsername"
-                        >
+                          htmlFor="validationCustomUsername">
                           Email
                         </label>
                         <div className="input-group">
@@ -216,8 +210,7 @@ export default function UserEdit(fetchProjects) {
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustomUsername"
-                        >
+                          htmlFor="validationCustomUsername">
                           Phone
                         </label>
                         <div className="input-group">
@@ -239,8 +232,7 @@ export default function UserEdit(fetchProjects) {
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustom03"
-                        >
+                          htmlFor="validationCustom03">
                           Street
                         </label>
                         <input
@@ -259,8 +251,7 @@ export default function UserEdit(fetchProjects) {
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustom03"
-                        >
+                          htmlFor="validationCustom03">
                           City
                         </label>
                         <input
@@ -279,8 +270,7 @@ export default function UserEdit(fetchProjects) {
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustom04"
-                        >
+                          htmlFor="validationCustom04">
                           State
                         </label>
                         <input
@@ -299,8 +289,7 @@ export default function UserEdit(fetchProjects) {
                       <div className="mb-3">
                         <label
                           className="form-label"
-                          htmlFor="validationCustom05"
-                        >
+                          htmlFor="validationCustom05">
                           Zip
                         </label>
                         <input
@@ -318,8 +307,7 @@ export default function UserEdit(fetchProjects) {
                       </div>
                       <button
                         className="btn btn-primary rounded-pill mb-5"
-                        type="submit"
-                      >
+                        type="submit">
                         Submit form
                       </button>
                     </form>

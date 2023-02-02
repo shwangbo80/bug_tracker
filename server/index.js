@@ -18,7 +18,7 @@ dotenv.config();
 
 mongoose.connect(
   process.env.MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  {useNewUrlParser: true, useUnifiedTopology: true},
   () => {
     console.log("Connected to MongoDB");
   }
@@ -40,7 +40,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({storage: storage});
 app.post("/api/upload", upload.single("file"), (req, res) => {
   try {
     return res.status(200).json("File uploded successfully");
@@ -54,6 +54,6 @@ app.use("/api/users", userRoute);
 app.use("/api/projects", projectRoute);
 app.use("/api/tasks", taskRoute);
 
-app.listen(8800, () => {
+app.listen(8801, () => {
   console.log("Backend server is running!");
 });

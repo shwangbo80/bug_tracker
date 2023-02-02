@@ -1,12 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useParams, Link, useRouteMatch, useHistory } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useParams, Link, useRouteMatch, useHistory} from "react-router-dom";
 import axios from "axios";
 
-export default function TaskDetails({ user }) {
-  let { id } = useParams();
+export default function TaskDetails({user}) {
+  let {id} = useParams();
   let history = useHistory();
-  let { path } = useRouteMatch();
+  let {path} = useRouteMatch();
 
   const [taskDetail, setTaskDetail] = useState();
   const [projectName, setProjectName] = useState();
@@ -27,7 +27,7 @@ export default function TaskDetails({ user }) {
     );
     if (confirmMessage) {
       const response = await axios.delete(
-        `http://localhost:8800/api/tasks/delete/${id}`
+        `http://localhost:8801/api/tasks/delete/${id}`
       );
       history.push("/dashboard/");
     } else {
@@ -36,14 +36,14 @@ export default function TaskDetails({ user }) {
   };
 
   const fetchProjects = async () => {
-    const response = await axios.get("http://localhost:8800/api/projects/all");
+    const response = await axios.get("http://localhost:8801/api/projects/all");
     setProjects(response.data);
     setProjectLoading(true);
   };
 
   const fetchOneTask = async () => {
     try {
-      const response = await axios.get(`http://localhost:8800/api/tasks/${id}`);
+      const response = await axios.get(`http://localhost:8801/api/tasks/${id}`);
       setTaskDetail([response.data]);
       setLoading(true);
     } catch (err) {
@@ -108,8 +108,7 @@ export default function TaskDetails({ user }) {
                           href="#"
                           className="dropdown-toggle arrow-none "
                           data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
+                          aria-expanded="false">
                           <i className="uil uil-ellipsis-h " />
                         </a>
                         <div className="dropdown-menu dropdown-menu-end">
@@ -122,8 +121,7 @@ export default function TaskDetails({ user }) {
                               onClick={() => {
                                 handleDelete();
                               }}
-                              className="dropdown-item text-danger"
-                            >
+                              className="dropdown-item text-danger">
                               <i className="uil uil-trash-alt me-1" />
                               Delete
                             </div>
@@ -182,8 +180,7 @@ export default function TaskDetails({ user }) {
                               className={`badge p-1 ${renderPriority(
                                 taskDetail[0]
                               )}
-                              )}`}
-                            >
+                              )}`}>
                               {taskDetail[0].priority}
                             </span>
                           </div>

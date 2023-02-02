@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { useRef, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import {useRef, useEffect, useState} from "react";
+import {useHistory} from "react-router-dom";
 
-export default function ProjectCreate({ fetchProjects, userList }) {
+export default function ProjectCreate({fetchProjects, userList}) {
   let history = useHistory();
   const projectName = useRef();
   const overview = useRef();
@@ -43,8 +43,7 @@ export default function ProjectCreate({ fetchProjects, userList }) {
                   setMemberAdd(item);
                   handleDeleteMember();
                   console.log(memberAdd);
-                }}
-              >
+                }}>
                 remove
               </button>
             </>
@@ -81,7 +80,7 @@ export default function ProjectCreate({ fetchProjects, userList }) {
     };
 
     const response = await axios.post(
-      "http://localhost:8800/api/projects/add",
+      "http://localhost:8801/api/projects/add",
       newPost
     );
     console.log(response);
@@ -141,8 +140,7 @@ export default function ProjectCreate({ fetchProjects, userList }) {
                     setStatus(e.target.value);
                   }}
                   className="form-select"
-                  id="example-select"
-                >
+                  id="example-select">
                   <option value="Ongoing">Ongoing</option>
                   <option value="Paused">Paused</option>
                   <option value="Completed">Completed</option>\
@@ -158,8 +156,7 @@ export default function ProjectCreate({ fetchProjects, userList }) {
                   }}
                   className="form-select"
                   id="example-select"
-                  defaultValue={"DEFAULT"}
-                >
+                  defaultValue={"DEFAULT"}>
                   <option value="DEFAULT" disabled>
                     -- select members --
                   </option>
@@ -176,8 +173,7 @@ export default function ProjectCreate({ fetchProjects, userList }) {
                   onClick={() => {
                     handleAddMember();
                     console.log("clicked");
-                  }}
-                >
+                  }}>
                   <i className="mdi mdi-plus" />
                   Add
                 </button>
@@ -192,8 +188,7 @@ export default function ProjectCreate({ fetchProjects, userList }) {
                           onClick={() => {
                             setMemberAdd(item);
                             handleDeleteMember(item);
-                          }}
-                        >
+                          }}>
                           X
                         </button>
                       </div>
@@ -261,8 +256,7 @@ export default function ProjectCreate({ fetchProjects, userList }) {
                 <div className="col-sm-4">
                   <button
                     className="btn btn-danger rounded-pill mb-5"
-                    onClick={handleSubmit}
-                  >
+                    onClick={handleSubmit}>
                     <i className="mdi mdi-plus" />
                     Create Project
                   </button>

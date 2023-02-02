@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const CommentSchema = new mongoose.Schema({
-  commeht: {
+  comment: {
     type: String,
     required: true,
   },
   username: {
-    tye: String,
+    type: String,
     required: true,
   },
 });

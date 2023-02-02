@@ -1,7 +1,7 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
-import { Link, useHistory, userHistory } from "react-router-dom";
+import {Link, useHistory, userHistory} from "react-router-dom";
 import ProjectDetails from "./ProjectDetails";
 
 export default function ProjectList({
@@ -18,9 +18,9 @@ export default function ProjectList({
       "Are you sure you want to delete the project?"
     );
     if (confirmMessage) {
-      await axios.delete(`http://localhost:8800/api/projects/delete/${item}`);
+      await axios.delete(`http://localhost:8801/api/projects/delete/${item}`);
       await axios.delete(
-        `http://localhost:8800/api/tasks/delete/project/${item}`
+        `http://localhost:8801/api/tasks/delete/project/${item}`
       );
       fetchProjects();
     } else {
@@ -51,8 +51,7 @@ export default function ProjectList({
                 <h4 className="mt-0">
                   <Link
                     to={`/dashboard/projectdetails/${item._id}`}
-                    onClick={() => setSelectedProject(item._id)}
-                  >
+                    onClick={() => setSelectedProject(item._id)}>
                     <span className="text-title">{item.projectname}</span>
                   </Link>
                 </h4>
@@ -112,8 +111,7 @@ export default function ProjectList({
               {user.role === "Admin" ? (
                 <Link
                   to={"/dashboard/createproject"}
-                  className="btn btn-primary rounded-pill mb-3"
-                >
+                  className="btn btn-primary rounded-pill mb-3">
                   <i className="mdi mdi-plus" /> Create Project
                 </Link>
               ) : (

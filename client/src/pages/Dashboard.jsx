@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,7 +27,7 @@ import TaskList from "./TaskList";
 import UserInfo from "./UserInfo";
 import UserTask from "./UserTask";
 
-export default function Dashboard({ user, setUser }) {
+export default function Dashboard({user, setUser}) {
   const [selectedProject, setSelectedProject] = useState();
   const [projects, setProjects] = useState([]);
   const [projectLoading, setProjectLoading] = useState(false);
@@ -45,7 +45,7 @@ export default function Dashboard({ user, setUser }) {
   }, []);
 
   const fetchProjects = async () => {
-    const response = await axios.get("http://localhost:8800/api/projects/all");
+    const response = await axios.get("http://localhost:8801/api/projects/all");
     setProjects(
       response.data
         .reverse()
@@ -89,7 +89,7 @@ export default function Dashboard({ user, setUser }) {
     localStorage.clear();
   };
 
-  let { path } = useRouteMatch();
+  let {path} = useRouteMatch();
 
   return (
     <>
@@ -103,8 +103,7 @@ export default function Dashboard({ user, setUser }) {
               data-bs-target="#navbarTogglerDemo01"
               aria-controls="navbarTogglerDemo01"
               aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
+              aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
             </button>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -116,8 +115,7 @@ export default function Dashboard({ user, setUser }) {
                   <a
                     className="nav-link active"
                     aria-current="page"
-                    href="/dashboard"
-                  >
+                    href="/dashboard">
                     Projects
                   </a>
                 </li>
@@ -149,8 +147,7 @@ export default function Dashboard({ user, setUser }) {
                         <button
                           type="button"
                           className="btn btn-danger rounded-pill "
-                          onClick={handleLogout}
-                        >
+                          onClick={handleLogout}>
                           Log out
                         </button>
                       </Link>

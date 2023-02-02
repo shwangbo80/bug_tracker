@@ -1,10 +1,10 @@
 import React from "react";
-import { useEffect, useRef, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
+import {useParams, useHistory} from "react-router-dom";
 import axios from "axios";
 
-export default function TaskEdit({ fetchProjects, userList, projects, user }) {
-  let { id } = useParams();
+export default function TaskEdit({fetchProjects, userList, projects, user}) {
+  let {id} = useParams();
   let history = useHistory();
 
   const [taskDetail, setTaskDetail] = useState();
@@ -28,7 +28,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
 
   const fetchOneTask = async () => {
     try {
-      const response = await axios.get(`http://localhost:8800/api/tasks/${id}`);
+      const response = await axios.get(`http://localhost:8801/api/tasks/${id}`);
       setTaskDetail(response.data);
       setTaskName(response.data.taskname);
       setProjectId(response.data.projectid);
@@ -85,7 +85,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
     };
 
     const response = await axios.put(
-      `http://localhost:8800/api/tasks/update/${id}`,
+      `http://localhost:8801/api/tasks/update/${id}`,
       newPost
     );
     console.log(response);
@@ -135,8 +135,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                         }}
                         className="form-select"
                         id="example-select"
-                        defaultValue={status}
-                      >
+                        defaultValue={status}>
                         <option value="Ongoing">Ongoing</option>
                         <option value="Paused">Paused</option>
                         <option value="Under Review">Under Review</option>
@@ -147,7 +146,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                           Overview
                         </label>
                         <textarea
-                          style={{ resize: "none" }}
+                          style={{resize: "none"}}
                           rows="10"
                           type="text"
                           id="simpleinput"
@@ -187,8 +186,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                           }}
                           className="form-select"
                           id="example-select"
-                          defaultValue={projectId}
-                        >
+                          defaultValue={projectId}>
                           {projects.map((item, key) => {
                             return (
                               <option value={item._id} key={key}>
@@ -208,8 +206,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                           }}
                           className="form-select"
                           id="example-select"
-                          defaultValue={status}
-                        >
+                          defaultValue={status}>
                           <option value="Ongoing">Ongoing</option>
                           <option value="Paused">Paused</option>
                           <option value="Under Review">Under Review</option>
@@ -222,7 +219,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                           Overview
                         </label>
                         <textarea
-                          style={{ resize: "none" }}
+                          style={{resize: "none"}}
                           rows="10"
                           type="text"
                           id="simpleinput"
@@ -244,8 +241,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                           }}
                           className="form-select"
                           id="example-select"
-                          defaultValue={priority}
-                        >
+                          defaultValue={priority}>
                           <option value="Low">Low</option>
                           <option value="Medium">Medium</option>
                           <option value="High">High</option>\
@@ -262,8 +258,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                           }}
                           className="form-select"
                           id="example-select"
-                          defaultValue={"DEFAULT"}
-                        >
+                          defaultValue={"DEFAULT"}>
                           <option value="DEFAULT" disabled>
                             -- select members --
                           </option>
@@ -281,8 +276,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                           onClick={() => {
                             handleAddMember();
                             console.log("clicked");
-                          }}
-                        >
+                          }}>
                           Add
                         </button>
                         <div className="d-flex mt-3">
@@ -295,8 +289,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                                   onClick={() => {
                                     setMembersArr(item);
                                     handleDeleteMember(item);
-                                  }}
-                                >
+                                  }}>
                                   X
                                 </button>
                               </div>
@@ -341,8 +334,7 @@ export default function TaskEdit({ fetchProjects, userList, projects, user }) {
                     <div className="col-sm-4">
                       <button
                         className="btn btn-danger rounded-pill mb-5"
-                        onClick={handleSubmit}
-                      >
+                        onClick={handleSubmit}>
                         <i className="mdi mdi-plus" />
                         Update Task
                       </button>
