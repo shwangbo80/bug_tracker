@@ -1,7 +1,7 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import {useParams, Link} from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export default function UserTask({
   projects,
@@ -83,7 +83,8 @@ export default function UserTask({
                       {/* project title*/}
                       <Link
                         to={`/dashboard/projectdetails/${item._id}`}
-                        onClick={() => setSelectedProject(item._id)}>
+                        onClick={() => setSelectedProject(item._id)}
+                      >
                         <h4 className="mt-0">
                           <div className="text-title">{item.projectname}</div>
                         </h4>
@@ -144,7 +145,8 @@ export default function UserTask({
                         href="#ongoingTasks"
                         role="button"
                         aria-expanded="false"
-                        aria-controls="ongoingTasks">
+                        aria-controls="ongoingTasks"
+                      >
                         <i className="uil uil-angle-down font-18" />
                         Ongoing <span className="text-muted">(10)</span>
                       </a>
@@ -158,15 +160,18 @@ export default function UserTask({
                               return (
                                 <div
                                   className="row justify-content-between"
-                                  key={key}>
-                                  <div className="col-sm-3 mb-sm-0">
+                                  key={key}
+                                >
+                                  <div className="col-sm-6 mb-sm-0">
                                     <div className="form-check">
                                       <Link
-                                        to={`/dashboard/taskdetails/${item._id}`}>
+                                        to={`/dashboard/taskdetails/${item._id}`}
+                                      >
                                         <label
                                           role="button"
                                           className="form-check-label"
-                                          htmlFor="task1">
+                                          htmlFor="task1"
+                                        >
                                           <h4 className="text-dark">
                                             {item.taskname}
                                           </h4>
@@ -197,7 +202,8 @@ export default function UserTask({
                                             <span
                                               className={`${renderPriority(
                                                 item.priority
-                                              )} px-3`}>
+                                              )} px-3`}
+                                            >
                                               <h6>{item.priority}</h6>
                                             </span>
                                           </li>
@@ -226,7 +232,8 @@ export default function UserTask({
                         href="#pausedTasks"
                         role="button"
                         aria-expanded="false"
-                        aria-controls="pausedTasks">
+                        aria-controls="pausedTasks"
+                      >
                         <i className="uil uil-angle-down font-18" />
                         Paused <span className="text-muted">(10)</span>
                       </a>
@@ -240,15 +247,18 @@ export default function UserTask({
                               return (
                                 <div
                                   className="row justify-content-between"
-                                  key={key}>
-                                  <div className="col-sm-3 mb-sm-0">
+                                  key={key}
+                                >
+                                  <div className="col-sm-6 mb-sm-0">
                                     <div className="form-check">
                                       <Link
-                                        to={`/dashboard/taskdetails/${item._id}`}>
+                                        to={`/dashboard/taskdetails/${item._id}`}
+                                      >
                                         <label
                                           role="button"
                                           className="form-check-label"
-                                          htmlFor="task1">
+                                          htmlFor="task1"
+                                        >
                                           <h4 className="text-dark">
                                             {item.taskname}
                                           </h4>
@@ -279,7 +289,8 @@ export default function UserTask({
                                             <span
                                               className={`${renderPriority(
                                                 item.priority
-                                              )} px-3`}>
+                                              )} px-3`}
+                                            >
                                               <h6>{item.priority}</h6>
                                             </span>
                                           </li>
@@ -308,7 +319,8 @@ export default function UserTask({
                         href="#underReviewTasks"
                         role="button"
                         aria-expanded="false"
-                        aria-controls="underReviewTasks">
+                        aria-controls="underReviewTasks"
+                      >
                         <i className="uil uil-angle-down font-18" />
                         Under Review <span className="text-muted">(10)</span>
                       </a>
@@ -322,15 +334,18 @@ export default function UserTask({
                               return (
                                 <div
                                   className="row justify-content-between"
-                                  key={key}>
-                                  <div className="col-sm-3 mb-sm-0">
+                                  key={key}
+                                >
+                                  <div className="col-sm-6 mb-sm-0">
                                     <div className="form-check">
                                       <Link
-                                        to={`/dashboard/taskdetails/${item._id}`}>
+                                        to={`/dashboard/taskdetails/${item._id}`}
+                                      >
                                         <label
                                           role="button"
                                           className="form-check-label"
-                                          htmlFor="task1">
+                                          htmlFor="task1"
+                                        >
                                           <h4 className="text-dark">
                                             {item.taskname}
                                           </h4>
@@ -361,7 +376,8 @@ export default function UserTask({
                                             <span
                                               className={`${renderPriority(
                                                 item.priority
-                                              )} px-3`}>
+                                              )} px-3`}
+                                            >
                                               <h6>{item.priority}</h6>
                                             </span>
                                           </li>
@@ -390,7 +406,8 @@ export default function UserTask({
                         href="#completedTasks"
                         role="button"
                         aria-expanded="false"
-                        aria-controls="completedTasks">
+                        aria-controls="completedTasks"
+                      >
                         <i className="uil uil-angle-down font-18" />
                         Completed <span className="text-muted">(10)</span>
                       </a>
@@ -404,15 +421,18 @@ export default function UserTask({
                               return (
                                 <div
                                   className="row justify-content-between"
-                                  key={key}>
-                                  <div className="col-sm-3 mb-sm-0">
+                                  key={key}
+                                >
+                                  <div className="col-sm-6 mb-sm-0">
                                     <div className="form-check">
                                       <Link
-                                        to={`/dashboard/taskdetails/${item._id}`}>
+                                        to={`/dashboard/taskdetails/${item._id}`}
+                                      >
                                         <label
                                           role="button"
                                           className="form-check-label"
-                                          htmlFor="task1">
+                                          htmlFor="task1"
+                                        >
                                           <h4 className="text-dark">
                                             {item.taskname}
                                           </h4>
@@ -443,7 +463,8 @@ export default function UserTask({
                                             <span
                                               className={`${renderPriority(
                                                 item.priority
-                                              )} px-3`}>
+                                              )} px-3`}
+                                            >
                                               <h6>{item.priority}</h6>
                                             </span>
                                           </li>
