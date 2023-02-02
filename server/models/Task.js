@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 
+const CommentSchema = new mongoose.Schema({
+  commeht: {
+    type: String,
+    required: true,
+  },
+  username: {
+    tye: String,
+    required: true,
+  },
+});
+
 const TaskSchema = new mongoose.Schema(
   {
     taskname: {
@@ -36,9 +47,9 @@ const TaskSchema = new mongoose.Schema(
       default: "",
     },
     members: [],
-    comments: [],
+    comments: [CommentSchema],
   },
-  { timestamps: true }
+  {timestamps: true}
 );
 
 module.exports = mongoose.model("Task", TaskSchema);

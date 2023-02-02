@@ -47,7 +47,7 @@ router.get("/", async (req, res) => {
 // Get all tasks by project ID
 router.get("/all/:id", async (req, res) => {
   try {
-    const task = await Task.find({ projectid: req.params.id });
+    const task = await Task.find({projectid: req.params.id});
     res.status(200).json(task);
   } catch (err) {
     res.status(500).json(err);
@@ -71,7 +71,7 @@ router.delete("/delete/project/:id", async (req, res) => {
   const taskId = req.params.id;
   try {
     const task = taskId;
-    await Task.deleteMany({ projectid: req.params.id });
+    await Task.deleteMany({projectid: req.params.id});
     res.status(200).json(task);
   } catch (err) {
     res.status(500).json(err);
@@ -89,5 +89,11 @@ router.put("/update/:id", async (req, res) => {
     return res.status(500).json(err);
   }
 });
+
+//Geg a task comment
+//Get all task comments
+//POst a single comment
+//Update a single comment
+//Delete a single comment
 
 module.exports = router;
