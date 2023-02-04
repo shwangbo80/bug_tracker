@@ -6,9 +6,7 @@ import {
   Route,
   Link,
   useRouteMatch,
-  HashRouter,
   useHistory,
-  Redirect,
 } from "react-router-dom";
 import axios from "axios";
 import Users from "./Users";
@@ -26,6 +24,7 @@ import UserEdit from "./UserEdit";
 import TaskList from "./TaskList";
 import UserInfo from "./UserInfo";
 import UserTask from "./UserTask";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function Dashboard({user, setUser}) {
   const [selectedProject, setSelectedProject] = useState();
@@ -45,7 +44,7 @@ export default function Dashboard({user, setUser}) {
   }, []);
 
   const fetchProjects = async () => {
-    const response = await axios.get("http://localhost:8801/api/projects/all");
+    const response = await axios.get(`${apiUrl}/api/projects/all`);
     setProjects(
       response.data
         .reverse()
@@ -57,7 +56,7 @@ export default function Dashboard({user, setUser}) {
   };
 
   const fetchTasks = async () => {
-    const response = await axios.get("http://localhost:8800/api/tasks");
+    const response = await axios.get(`${apiUrl}/api/tasks`);
     setTasks(
       response.data
         .reverse()
@@ -69,7 +68,7 @@ export default function Dashboard({user, setUser}) {
   };
 
   const fetchUsers = async () => {
-    const response = await axios.get("http://localhost:8800/api/users/all");
+    const response = await axios.get(`${apiUrl}/api/users/all`);
     function userArrSort(a, b) {
       if (a.firstname < b.firstname) {
         return -1;

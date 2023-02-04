@@ -11,6 +11,7 @@ const projectRoute = require("./routes/projects");
 const taskRoute = require("./routes/tasks");
 const path = require("path");
 const cors = require("cors");
+const port = 8801;
 
 app.use(cors());
 
@@ -54,6 +55,6 @@ app.use("/api/users", userRoute);
 app.use("/api/projects", projectRoute);
 app.use("/api/tasks", taskRoute);
 
-app.listen(8801, () => {
+app.listen(port, () => {
   console.log("Backend server is running!");
 });

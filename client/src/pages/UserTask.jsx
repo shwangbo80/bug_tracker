@@ -14,6 +14,7 @@ export default function UserTask({
   const [projectLoading, setProjectLoading] = useState(false);
   const [userTasks, setUserTasks] = useState();
   const [taskLoading, setTaskLoading] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   console.log(tasks);
 
@@ -23,7 +24,7 @@ export default function UserTask({
   }, []);
 
   const filterUserProjects = async () => {
-    const response = await axios.get("http://localhost:8801/api/projects/all");
+    const response = await axios.get(`${apiUrl}/api/projects/all`);
     const filteredUserProjects = response.data.filter((item) => {
       return item.members == user.username;
     });
@@ -31,7 +32,7 @@ export default function UserTask({
     setProjectLoading(true);
   };
   const filterUserTasks = async () => {
-    const response = await axios.get("http://localhost:8801/api/tasks");
+    const response = await axios.get(`${apiUrl}/api/tasks`);
     const filteredUserTasks = response.data.filter((item) => {
       return item.members == user.username;
     });

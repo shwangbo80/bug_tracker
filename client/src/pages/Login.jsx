@@ -6,17 +6,15 @@ import axios from "axios";
 export default function Login({user, setUser}) {
   const email = useRef();
   const password = useRef();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
-      const response = await axios.post(
-        "http://localhost:8801/api/auth/login",
-        {
-          email: email.current.value,
-          password: password.current.value,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/auth/login`, {
+        email: email.current.value,
+        password: password.current.value,
+      });
       setUser(response.data);
       localStorage.setItem("user", JSON.stringify(response.data));
     } catch (err) {

@@ -12,16 +12,15 @@ export default function ProjectList({
   setSelectedProject,
 }) {
   const history = useHistory();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleDelete = async (item) => {
     const confirmMessage = window.confirm(
       "Are you sure you want to delete the project?"
     );
     if (confirmMessage) {
-      await axios.delete(`http://localhost:8801/api/projects/delete/${item}`);
-      await axios.delete(
-        `http://localhost:8801/api/tasks/delete/project/${item}`
-      );
+      await axios.delete(`${apiUrl}/api/projects/delete/${item}`);
+      await axios.delete(`${apiUrl}/api/tasks/delete/project/${item}`);
       fetchProjects();
     } else {
       return;

@@ -17,15 +17,14 @@ export default function ProjectEdit({fetchProjects, userList}) {
   const [budget, setBudget] = useState();
   const [membersArr, setMembersArr] = useState([]);
   const [memberAdd, setMemberAdd] = useState();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchSingleProject();
   }, []);
 
   const fetchSingleProject = async () => {
-    const response = await axios.get(
-      `http://localhost:8801/api/projects/${id}`
-    );
+    const response = await axios.get(`${apiUrl}/api/projects/${id}`);
     setProjectname(response.data.projectname);
     setStatus(response.data.status);
     setOverview(response.data.overview);
@@ -66,18 +65,16 @@ export default function ProjectEdit({fetchProjects, userList}) {
       return;
     }
     try {
-      const response = await axios.put(
-        `http://localhost:8801/api/projects/update/${id}`,
-        {
-          projectname: projectName,
-          status: status,
-          overview: overview,
-          startdate: startDate,
-          duedate: dueDate,
-          budget: budget,
-          members: membersArr,
-        }
-      );
+      const response = await axios.put(`apiUrl/api/projects/update/${id}`, {
+        projectname: projectName,
+        status: status,
+        overview: overview,
+        startdate: startDate,
+        duedate: dueDate,
+        budget: budget,
+        members: membersArr,
+      });
+      console.log(response);
       fetchProjects();
       history.push("/dashboard/");
     } catch (err) {

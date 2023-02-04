@@ -15,6 +15,7 @@ export default function ProjectCreate({fetchProjects, userList}) {
   const [status, setStatus] = useState("Ongoing");
   const [membersArr, setMembersArr] = useState([]);
   const [memberAdd, setMemberAdd] = useState();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleAddMember = () => {
     console.log(memberAdd);
@@ -79,10 +80,7 @@ export default function ProjectCreate({fetchProjects, userList}) {
       members: membersArr,
     };
 
-    const response = await axios.post(
-      "http://localhost:8801/api/projects/add",
-      newPost
-    );
+    const response = await axios.post(`${apiUrl}/api/projects/add`, newPost);
     console.log(response);
     fetchProjects();
     history.push("/dashboard");

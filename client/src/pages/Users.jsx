@@ -6,6 +6,7 @@ import {useParams, Link} from "react-router-dom";
 export default function Users({userList, user}) {
   const [users, setUsers] = useState();
   const [loading, setLoading] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchAllUsers();
@@ -13,7 +14,7 @@ export default function Users({userList, user}) {
   }, []);
 
   const fetchAllUsers = async () => {
-    const response = await axios.get("http://localhost:8801/api/users/all/");
+    const response = await axios.get(`${apiUrl}/api/users/all/`);
     function userArrSort(a, b) {
       if (a.firstname < b.firstname) {
         return -1;

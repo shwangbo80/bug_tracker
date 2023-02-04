@@ -17,26 +17,24 @@ export default function UserCreate({fetchProjects, userList}) {
   const city = useRef();
   const state = useRef();
   const zip = useRef();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await axios.post(
-      "http://localhost:8801/api/auth/register",
-      {
-        firstname: firstName.current.value,
-        lastname: lastName.current.value,
-        role: role.current.value,
-        username: userName.current.value,
-        password: password.current.value,
-        email: email.current.value,
-        phone: phone.current.value,
-        street: street.current.value,
-        city: city.current.value,
-        state: state.current.value,
-        zip: zip.current.value,
-      }
-    );
+    const response = await axios.post(`${apiUrl}/api/auth/register`, {
+      firstname: firstName.current.value,
+      lastname: lastName.current.value,
+      role: role.current.value,
+      username: userName.current.value,
+      password: password.current.value,
+      email: email.current.value,
+      phone: phone.current.value,
+      street: street.current.value,
+      city: city.current.value,
+      state: state.current.value,
+      zip: zip.current.value,
+    });
     console.log(response);
     fetchProjects();
     history.push("/dashboard/users");

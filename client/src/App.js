@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  Navigate,
-  NavLink,
   useHistory,
   Redirect,
 } from "react-router-dom";

@@ -20,6 +20,7 @@ export default function TaskEdit({fetchProjects, userList, projects, user}) {
   const [projectArr, setProjectArr] = useState([]);
   const [projectAdd, setProjectAdd] = useState();
   const [loading, setLoading] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchOneTask();
@@ -28,7 +29,7 @@ export default function TaskEdit({fetchProjects, userList, projects, user}) {
 
   const fetchOneTask = async () => {
     try {
-      const response = await axios.get(`http://localhost:8801/api/tasks/${id}`);
+      const response = await axios.get(`${apiUrl}/api/tasks/${id}`);
       setTaskDetail(response.data);
       setTaskName(response.data.taskname);
       setProjectId(response.data.projectid);
@@ -85,7 +86,7 @@ export default function TaskEdit({fetchProjects, userList, projects, user}) {
     };
 
     const response = await axios.put(
-      `http://localhost:8801/api/tasks/update/${id}`,
+      `${apiUrl}/api/tasks/update/${id}`,
       newPost
     );
     console.log(response);

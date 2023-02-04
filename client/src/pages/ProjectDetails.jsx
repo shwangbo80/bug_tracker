@@ -12,6 +12,7 @@ export default function ProjectDetails({
 }) {
   let {id} = useParams();
   const history = useHistory();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchOneProject();
@@ -28,10 +29,8 @@ export default function ProjectDetails({
       "Are you sure you want to delete the project?"
     );
     if (confirmMessage) {
-      await axios.delete(`http://localhost:8801/api/projects/delete/${item}`);
-      await axios.delete(
-        `http://localhost:8801/api/tasks/delete/project/${item}`
-      );
+      await axios.delete(`${apiUrl}/api/projects/delete/${item}`);
+      await axios.delete(`${apiUrl}/api/tasks/delete/project/${item}`);
       fetchProjects();
       history.push("/dashboard");
     } else {
@@ -50,17 +49,13 @@ export default function ProjectDetails({
   };
 
   const fetchOneProject = async () => {
-    const response = await axios.get(
-      `http://localhost:8801/api/projects/${id}`
-    );
+    const response = await axios.get(`${apiUrl}/api/projects/${id}`);
     setProjectDetail(response.data);
     setLoading(true);
   };
 
   const fetchProjectTasks = async () => {
-    const response = await axios.get(
-      `http://localhost:8801/api/tasks/all/${id}`
-    );
+    const response = await axios.get(`${apiUrl}/api/tasks/all/${id}`);
     setProjectTasks(response.data);
     setTaskLoading(true);
   };

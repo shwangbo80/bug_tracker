@@ -13,6 +13,7 @@ export default function TaskDetails({user}) {
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState([]);
   const [projectLoading, setProjectLoading] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchProjects();
@@ -26,9 +27,8 @@ export default function TaskDetails({user}) {
       "Are you sure you want to delete the task?"
     );
     if (confirmMessage) {
-      const response = await axios.delete(
-        `http://localhost:8801/api/tasks/delete/${id}`
-      );
+      const response = await axios.delete(`${apiUrl}/api/tasks/delete/${id}`);
+      console.log(response);
       history.push("/dashboard/");
     } else {
       console.log("confirm cancelled");
@@ -36,14 +36,14 @@ export default function TaskDetails({user}) {
   };
 
   const fetchProjects = async () => {
-    const response = await axios.get("http://localhost:8801/api/projects/all");
+    const response = await axios.get(`${apiUrl}/api/projects/all`);
     setProjects(response.data);
     setProjectLoading(true);
   };
 
   const fetchOneTask = async () => {
     try {
-      const response = await axios.get(`http://localhost:8801/api/tasks/${id}`);
+      const response = await axios.get(`${apiUrl}/api/tasks/${id}`);
       setTaskDetail([response.data]);
       setLoading(true);
     } catch (err) {
@@ -56,7 +56,7 @@ export default function TaskDetails({user}) {
       return <p></p>;
     } else {
       const findProjectName = projects.filter((name) => {
-        return name._id == taskDetail[0].projectid;
+        return name._id === taskDetail[0].projectid;
       });
       return (
         <span>

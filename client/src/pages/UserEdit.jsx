@@ -21,15 +21,14 @@ export default function UserEdit(fetchProjects) {
   const [city, setCity] = useState();
   const [state, setState] = useState();
   const [zip, setZip] = useState();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchOneUser();
   }, []);
 
   const fetchOneUser = async () => {
-    const response = await axios.get(
-      `http://localhost:8801/api/users/?userId=${id}`
-    );
+    const response = await axios.get(`${apiUrl}/api/users/?userId=${id}`);
     setFirstName(response.data.firstname);
     setLastName(response.data.lastname);
     setRole(response.data.role);
@@ -46,7 +45,7 @@ export default function UserEdit(fetchProjects) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.put(`http://localhost:8800/api/users/${id}`, {
+    const response = await axios.put(`${apiUrl}/api/users/${id}`, {
       firstname: firstName,
       lastname: lastName,
       role: role,

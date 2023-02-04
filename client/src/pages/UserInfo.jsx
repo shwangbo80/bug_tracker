@@ -8,15 +8,14 @@ export default function UserInfo({user}) {
   const {id} = useParams();
   const [fetchedUser, setFetchedUser] = useState();
   const [loading, setLoading] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchOneUser();
   }, []);
 
   const fetchOneUser = async () => {
-    const response = await axios.get(
-      `http://localhost:8801/api/users/?userId=${id}`
-    );
+    const response = await axios.get(`${apiUrl}/api/users/?userId=${id}`);
     setFetchedUser(response.data);
     setLoading(true);
   };
@@ -26,7 +25,7 @@ export default function UserInfo({user}) {
       "Are you sure you want to delete the user?"
     );
     if (confirmMessage) {
-      await axios.delete(`http://localhost:8801/api/users/delete/${id}`);
+      await axios.delete(`${apiUrl}/api/users/delete/${id}`);
       history.push("/dashboard/users");
     } else {
       console.log("confirm cancelled");

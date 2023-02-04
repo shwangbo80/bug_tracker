@@ -18,6 +18,7 @@ export default function TaskCreate({fetchProjects, userList, projects}) {
   const [projectArr, setProjectArr] = useState([]);
   const [projectAdd, setProjectAdd] = useState();
   const [members, setMembers] = useState();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   console.log(membersArr);
 
@@ -64,10 +65,7 @@ export default function TaskCreate({fetchProjects, userList, projects}) {
       members: membersArr,
     };
 
-    const response = await axios.post(
-      "http://localhost:8801/api/tasks/add",
-      newPost
-    );
+    const response = await axios.post(`${apiUrl}/api/tasks/add`, newPost);
     console.log(response);
     fetchProjects();
     history.push("/dashboard");
